@@ -36,3 +36,41 @@ def describir(status: str) -> str:
             return "El estado es inactivo."
         case _:
             return "El estado es: " + status
+
+edad = 17
+
+if edad < 18:
+    categoria = "menor"
+elif edad < 65:
+    categoria = "adulto"
+else:
+    categoria = "adulto mayor"
+
+print(categoria)
+
+frutas = ["manzana", "banana", "pera"]
+
+for fruta in frutas:
+    print(fruta)
+
+# con índice, cuando lo necesitás:
+for i, fruta in enumerate(frutas):
+    print(i, fruta)
+
+# rango numérico:
+for i in range(5):        # 0,1,2,3,4
+    print(i)
+
+for i in range(2, 10, 2):  # inicio, fin (exclusivo), paso -> 2,4,6,8
+    print(i)
+
+punto = (3, 0)
+match punto:
+    case (0, 0):
+        print("origen")
+    case (x, 0):
+        print(f"sobre el eje X, x={x}")
+    case (0, y):
+        print(f"sobre el eje Y, y={y}")
+    case (x, y):
+        print(f"punto genérico ({x}, {y})")

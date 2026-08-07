@@ -3,6 +3,8 @@ def main() -> None:
     print(f"Libros sin stock: {get_books_not_stock(libros)}")
     print(f"Autores de los libros: {get_authos(libros)}")
     print(f"Libros de Robert Martin: {get_books_by_author(libros, 'Robert Martin')}")
+    print(f"Libro más caro: {get_book_more_expensive(libros)}")
+    print(f"Libros agrupados por autor: {get_books_grouped_by_author(libros)}")
     print("Fin del programa.")
 
 libros = [
@@ -43,3 +45,23 @@ def get_books_by_author(books: list[dict[str, str| int]], author: str) -> list[s
         if isinstance(book["autor"], str) and book["autor"] == author:
             books_by_author.append(book["titulo"])
     return books_by_author
+
+def get_book_more_expensive(books: list[dict[str, str| int]]) -> dict[str, str| int]| None:
+    most_expensive_book = None
+    for book in books:
+        if isinstance(book["precio"], (int, float)):
+            if most_expensive_book is None or book["precio"] > most_expensive_book["precio"]: # type: ignore
+                most_expensive_book = book
+    return most_expensive_book
+
+def get_books_grouped_by_author(books: list[dict[str, str | int]]) -> dict[str, list[str]]:
+    grouped: dict[str, list[str]] = {}
+    for book in books:
+        autor = book["autor"]
+        # 1. ¿"autor" ya es una clave en "grouped"?
+        #    si NO está, hay que crearla con una lista vacía antes de poder usarla
+        # 2. en cualquier caso (haya estado o no), agregar el título a esa lista
+        if autor not in grouped:
+            grouped[autor] = [] # type: ignore
+        grouped[autor].append(book["titulo"]) # pyright: ignore[reportArgumentType]
+    return grouped

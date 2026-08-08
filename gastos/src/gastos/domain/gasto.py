@@ -17,6 +17,6 @@ class Gasto:
     categoria: Categoria
     fecha: date
     descripcion: str = ""
-def __post_init__(self) -> None:
-    if self.monto <= 0:
-        raise MontoInvalidoError(f"El monto debe ser positivo, recibí {self.monto}")
+    def __post_init__(self) -> None:
+        if self.monto <= 0:
+            raise MontoInvalidoError(f"El monto debe ser positivo, recibí {self.monto}")

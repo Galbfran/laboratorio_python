@@ -5,11 +5,11 @@ from gastos.domain.errores import MontoInvalidoError
 
 
 class Categoria(StrEnum):
-    comida = "comida"
-    transporte = "transporte"
-    ocio = "ocio"
-    servicios = "servicios"
-    otros = "otros"
+    COMIDA = "comida"
+    TRANSPORTE = "transporte"
+    OCIO = "ocio"
+    SERVICIOS = "servicios"
+    OTROS = "otros"
 
 @dataclass(frozen=True, slots=True)
 class Gasto:

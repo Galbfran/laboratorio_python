@@ -4,6 +4,7 @@ from enum import StrEnum
 
 from gastos.domain.errores import MontoInvalidoError
 
+
 class Categoria(StrEnum):
     comida = "comida"
     transporte = "transporte"

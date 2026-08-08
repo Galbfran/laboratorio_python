@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from datetime import date
 from enum import StrEnum
-
 from gastos.domain.errores import MontoInvalidoError
 
 

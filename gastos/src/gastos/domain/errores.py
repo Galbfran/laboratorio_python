@@ -4,3 +4,6 @@ class ErrorGasto(Exception):
 
 class MontoInvalidoError(ErrorGasto):
     """Se lanza cuando el monto de un gasto no es positivo."""
+
+class ArchivoCorruptoError(ErrorGasto):
+    """Se lanza cuando el archivo de persistencia tiene JSON inválido."""

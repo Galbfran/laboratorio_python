@@ -1,3 +1,4 @@
+from gastos.domain.errores import ArchivoCorruptoError
 import pytest # type: ignore
 from datetime import date
 from pathlib import Path
@@ -22,3 +23,10 @@ def test_guardar_y_cargar_devuelve_los_mismos_gastos(repositorio):
     gastos = [Gasto(1500, Categoria.COMIDA, date.today(), "almuerzo")]
     repositorio.guardar(gastos)
     assert repositorio.cargar() == gastos
+
+def test_json_corrupto_lanza_error(tmp_path: Path):   # ← esto es lo nuevo
+    ruta = tmp_path / "gastos.json"
+    ruta.write_text("esto no es json valido {{{")
+    repositorio = RepositorioJson(ruta)
+    with pytest.raises(ArchivoCorruptoError):
+        repositorio.cargar()
